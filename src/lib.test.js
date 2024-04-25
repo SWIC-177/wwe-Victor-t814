@@ -1,21 +1,42 @@
-import { expect, test } from "vitest";
-import { removeCorrespondingItemsByTerm } from "./lib";
+import { expect } from "vitest";
+import { sortNames } from "./lib";
 
-test("removeCorrespondingItemsByTerm", () => {
-  // Arrange
-  const terms1 = ["term1", "term2", "term3"];
-  const terms2 = ["corresponding1", "corresponding2", "corresponding3"];
-  const filterTerm = "term2";
+describe("sortNames function", () => {
+  it("should sort an array of names by last name by default", () => {
+    const unsortedNames = [
+      "John Smith",
+      "Alice Johnson",
+      "David Lee",
+      "Emily Taylor",
+    ];
 
-  const expected = {
-    terms1: ["term1", "term3"],
-    terms2: ["corresponding1", "corresponding3"],
-  };
+    const expectedSortedNames = [
+      "Alice Johnson",
+      "David Lee",
+      "John Smith",
+      "Emily Taylor",
+    ];
 
-  // Act
-  const result = removeCorrespondingItemsByTerm({ terms1, terms2, filterTerm });
+    const sortedNames = sortNames(unsortedNames);
+    expect(sortedNames).toEqual(expectedSortedNames);
+  });
 
-  // Assert - Check if the function correctly removes the corresponding items
-  expect(result.terms1).toEqual(expected.terms1);
-  expect(result.terms2).toEqual(expected.terms2);
+  it("should sort an array of names by first name when specified", () => {
+    const unsortedNames = [
+      "John Smith",
+      "Alice Johnson",
+      "David Lee",
+      "Emily Taylor",
+    ];
+
+    const expectedSortedNames = [
+      "Alice Johnson",
+      "David Lee",
+      "Emily Taylor",
+      "John Smith",
+    ];
+
+    const sortedNames = sortNames(unsortedNames, "first");
+    expect(sortedNames).toEqual(expectedSortedNames);
+  });
 });
