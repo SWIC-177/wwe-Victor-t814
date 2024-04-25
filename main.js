@@ -1,12 +1,5 @@
-import { BELTS, CHAMPIONS } from "./src/data";
-import { removeCorrespondingItemsByTerm } from "./src/lib";
+import { CHAMPIONS } from "./src/data";
+import { sortNames } from "./src/lib";
 
-const { terms1: updatedBelts, terms2: updatedChampions } =
-  removeCorrespondingItemsByTerm({
-    terms1: BELTS,
-    terms2: CHAMPIONS,
-    filterTerm: "Tag Team Champions",
-  });
-
-console.log("Updated BELTS:", updatedBelts);
-console.log("Updated CHAMPIONS:", updatedChampions);
+const sortedChampionsByLastName = sortNames(CHAMPIONS);
+console.log(sortedChampionsByLastName);
