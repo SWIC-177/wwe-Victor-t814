@@ -1,43 +1,16 @@
-/**
- * @typedef {Object} RemoveCorrespondingItemsByTermArgs
- * @property {string[]} terms1
- * @property {string[]} terms2
- * @property {string} filterTerm
- */
-/**
- * @typedef {Object} Terms
- * @property {string[]} terms1
- * @property {string[]} terms2
- */
+export function sortNames(arr, sortBy = "last") {
+  // Define a function to extract either the first or last name
+  const getNamePart = (name) => {
+    const parts = name.split(" ");
+    return sortBy === "first" ? parts[0] : parts[parts.length - 1];
+  };
 
-/**
- * @param {RemoveCorrespondingItemsByTermArgs} args
- * @returns {Terms}
- */
-export function removeCorrespondingItemsByTerm({ terms1, terms2, filterTerm }) {
-  return terms1.reduce(
-    (accumulatedResults, term, index) => {
-      // Avoid any mutation or reassignment of the parameter object.
-      const accumulatedResults2Modify = { ...accumulatedResults };
+  // Sort the array based on the selected name part
+  arr.sort((a, b) => {
+    const nameA = getNamePart(a);
+    const nameB = getNamePart(b);
+    return nameA.localeCompare(nameB);
+  });
 
-      // As we iterate, if the current `term` does not include the `filterTerm`, add it to the 'results arrays.'
-      if (!term.includes(filterTerm)) {
-        accumulatedResults2Modify.terms1 = [
-          ...accumulatedResults2Modify.terms1,
-          term,
-        ];
-
-        // Also add the corresponding term from `terms2` to the 'results arrays.'
-        accumulatedResults2Modify.terms2 = [
-          ...accumulatedResults2Modify.terms2,
-          terms2[index],
-        ];
-      }
-
-      return accumulatedResults2Modify;
-    },
-
-    // Initialize the results.
-    { terms1: [], terms2: [] },
-  );
+  return arr;
 }
