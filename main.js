@@ -1,3 +1,8 @@
-import { BELTS, CHAMPIONS } from "./src/data.js";
+import { BELTS, CHAMPIONS } from "./src/data";
 
-console.log(BELTS, CHAMPIONS);
+const filteredBelts = BELTS.filter((belt) => belt !== "Women's World Champion");
+const filteredChampions = CHAMPIONS.filter(
+  (champion) => champion !== "Vacant Title",
+);
+console.log("Updated BELTS:", filteredBelts);
+console.log("Updated CHAMPIONS:", filteredChampions);
