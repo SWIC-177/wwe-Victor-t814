@@ -1,8 +1,12 @@
 import { BELTS, CHAMPIONS } from "./src/data";
+import { removeCorrespondingItemsByTerm } from "./src/lib";
 
-const filteredBelts = BELTS.filter((belt) => belt !== "Women's World Champion");
-const filteredChampions = CHAMPIONS.filter(
-  (champion) => champion !== "Vacant Title",
-);
-console.log("Updated BELTS:", filteredBelts);
-console.log("Updated CHAMPIONS:", filteredChampions);
+const { terms1: updatedBelts, terms2: updatedChampions } =
+  removeCorrespondingItemsByTerm({
+    terms1: BELTS,
+    terms2: CHAMPIONS,
+    filterTerm: "Tag Team Champions",
+  });
+
+console.log("Updated BELTS:", updatedBelts);
+console.log("Updated CHAMPIONS:", updatedChampions);
