@@ -1,5 +1,7 @@
 import { CHAMPIONS } from "./src/data";
-import { sortNames } from "./src/lib";
+import { getLastName } from "./src/lib";
 
-const sortedChampionsByLastName = sortNames(CHAMPIONS);
-console.log(sortedChampionsByLastName);
+const sortedChampions = CHAMPIONS.toSorted((a, b) =>
+  getLastName(a).localeCompare(getLastName(b)),
+);
+console.log(sortedChampions);
