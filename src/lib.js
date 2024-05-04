@@ -14,3 +14,7 @@ export function sortNames(arr, sortBy = "last") {
 
   return arr;
 }
+export function getLastName(fullName) {
+  const splitName = fullName.split(" ");
+  return splitName[splitName.length - 1];
+}
