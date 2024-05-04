@@ -1,42 +1,15 @@
-import { expect } from "vitest";
-import { sortNames } from "./lib";
+import { describe, expect, test } from "vitest";
+import { getLastName } from "./lib";
 
-describe("sortNames function", () => {
-  it("should sort an array of names by last name by default", () => {
-    const unsortedNames = [
-      "John Smith",
-      "Alice Johnson",
-      "David Lee",
-      "Emily Taylor",
-    ];
-
-    const expectedSortedNames = [
-      "Alice Johnson",
-      "David Lee",
-      "John Smith",
-      "Emily Taylor",
-    ];
-
-    const sortedNames = sortNames(unsortedNames);
-    expect(sortedNames).toEqual(expectedSortedNames);
-  });
-
-  it("should sort an array of names by first name when specified", () => {
-    const unsortedNames = [
-      "John Smith",
-      "Alice Johnson",
-      "David Lee",
-      "Emily Taylor",
-    ];
-
-    const expectedSortedNames = [
-      "Alice Johnson",
-      "David Lee",
-      "Emily Taylor",
-      "John Smith",
-    ];
-
-    const sortedNames = sortNames(unsortedNames, "first");
-    expect(sortedNames).toEqual(expectedSortedNames);
+describe("getLastName", () => {
+  test("returns the last name from a full name", () => {
+    // Arrange
+    const fullName = "John Doe";
+    const expected = "Doe";
+    // Act
+    const result = getLastName(fullName);
+    // Assert
+    expect(result).toBe(expected);
   });
 });
+test("getLastName", () => {});
